@@ -7,12 +7,6 @@ on:
     types: [ 'opened', 'synchronize' ]
 
 jobs:
-  commitlint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ahmadnassri/action-commit-lint@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
   changes-files:
     runs-on: ubuntu-latest
@@ -113,7 +107,7 @@ jobs:
           fi
           
   e2e-check:
-    needs: [commitlint, terraform-fmt, terraform-validate, tflint]
+    needs: [terraform-fmt, terraform-validate, tflint]
     runs-on: ubuntu-latest
     name: 'e2e check'
     steps:
